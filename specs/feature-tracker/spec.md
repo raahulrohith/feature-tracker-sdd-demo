@@ -5,7 +5,15 @@
 **Status**: Draft  
 **Input**: User description: "Create a system specification for a 'Feature Request Tracker' web application. Context: Tech stack: React + TypeScript, Vite. Target: Single-page UI, no backend (in-memory data is fine for now). This app is a demo for Spec-Driven Development."
 
+
 **Constitution Reference**: All requirements and user stories must comply with the Feature Tracker Constitution (see `.specify/memory/constitution.md`).
+
+---
+
+## Assumptions
+- Feature requests will be displayed in order of creation, with the newest first.
+- Editing a feature request allows changes to all fields except `id` and `createdAt`.
+- Deleting a feature request is immediate and permanent (no undo or confirmation required).
 
 ---
 
