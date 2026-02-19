@@ -31,7 +31,10 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- All specs, plans, and tasks for this feature MUST be located in `specs/feature-tracker/`.
+- No implementation may begin without an approved, versioned spec in this folder.
+- All tasks and commits MUST map to a user story or requirement in the spec.
+- Each feature/component must be independently testable as described in the constitution.
 
 ## Project Structure
 

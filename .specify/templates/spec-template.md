@@ -5,6 +5,8 @@
 **Status**: Draft  
 **Input**: User description: "$ARGUMENTS"
 
+**Constitution Reference**: All requirements and user stories must comply with the Feature Tracker Constitution (see `.specify/memory/constitution.md`).
+
 ## User Scenarios & Testing *(mandatory)*
 
 <!--

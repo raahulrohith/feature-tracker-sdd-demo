@@ -1,50 +1,52 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Feature Tracker Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### I. Spec-First Development
+All new features and changes MUST begin with a clear, versioned specification. Specs must be written and reviewed before any implementation work starts. Each spec must be independently testable and traceable to code changes.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### II. Centralized Documentation
+All specs, plans, and tasks MUST reside in the `specs/feature-tracker/` folder. No feature work may proceed without corresponding documentation in this location.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### III. Simple, Testable Components
+React components MUST be simple, focused, and independently testable. Each component must have a clear separation of concerns (UI, state, logic) and avoid unnecessary complexity.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### IV. Consistent User Experience
+All forms, validation, and error states MUST follow a consistent UX pattern. User feedback and error handling must be clear and predictable across the app.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### V. Lightweight State & Dependencies
+State management MUST be as simple as possible for the use case. Avoid introducing new dependencies unless justified in the spec and plan. Prefer React built-ins and minimal libraries.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### VI. Incremental, Traceable Commits
+All code changes MUST be committed in small, incremental steps that map directly to tasks in the current spec/plan. Each commit message must reference the relevant task or user story.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+
+## Additional Constraints
+
+- **Tech Stack:** React, TypeScript, Vite, minimal state libraries (if any), ESLint for linting.
+- **Folder Structure:** All specs, plans, and tasks must be in `specs/feature-tracker/`.
+- **Dependencies:** New dependencies require justification in the spec and review approval.
+- **Testing:** Components and logic must be independently testable. Use Jest or React Testing Library.
+
+
+## Development Workflow
+
+- **Spec/Plan/Task Review:** No implementation may begin without an approved spec and plan in `specs/feature-tracker/`.
+- **Commit Discipline:** Each commit must map to a specific task or user story. Large changes must be split into smaller, reviewable commits.
+- **Review Gates:** PRs must verify adherence to all principles. Code reviewers are responsible for enforcing this constitution.
+
+
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+- This constitution supersedes all other workflow or coding practices for this project.
+- Amendments require documentation, team approval, and a migration plan if breaking changes are introduced.
+- All PRs and reviews must verify compliance with these principles.
+- Complexity must be justified in the spec and plan.
+- Use this constitution as the primary reference for runtime and development guidance.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+
+**Version**: 1.0.0 | **Ratified**: TODO(RATIFICATION_DATE): Set by project owner | **Last Amended**: 2026-02-20
+<!-- Version: 1.0.0 | Ratified: TODO(RATIFICATION_DATE): Set by project owner | Last Amended: 2026-02-20 -->
