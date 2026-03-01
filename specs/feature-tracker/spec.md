@@ -52,18 +52,39 @@ A simple, single-page web application for tracking feature requests. Built with 
 - Disallowed transitions:
   - Released → any other status
 
+**Status Interaction Rules (UX):**
+- Status must NOT be modified via a free-selection dropdown.
+- The UI must only expose valid status transitions as contextual action buttons:
+  - Proposed → show a "Start Progress" button
+  - In Progress → show a "Release" button
+  - Released → no further transition action is shown
+- Disallowed transitions must not be visible in the UI.
+
 ## 4. User Roles
 - **User:** Any visitor to the app. No authentication required.
 
 ## 5. User Stories / Functional Requirements
 - As a user, I can create a new feature request with title, description, and priority.
 - As a user, I can see a list of all feature requests.
-- As a user, I can update the title, description, priority, and status of an existing feature request.
+- As a user, I can update the title, description, and priority of an existing feature request.
+- As a user, I can advance a feature request's status using contextual action buttons (not a free-selection dropdown).
 - As a user, I can delete a feature request.
-- As a user, I can see priority and status clearly in the list.
+- As a user, I can see priority and status clearly in the list via badge-style visual indicators.
 
 ## 6. Non-Functional Requirements
-- The UI must be responsive and accessible.
+
+### UI & Layout
+- The application layout must be centered horizontally.
+- The main content container must have a constrained max width (800–900px).
+- Feature request cards must have clear visual separation, proper contrast, and readable typography hierarchy.
+- Priority and status must be visually distinguishable using badge-style indicators.
+
+### Responsiveness
+- The UI must be responsive for mobile and tablet screen sizes.
+- Form and list layout must stack cleanly on small screens.
+- Text must not overflow or become unreadable at any viewport width.
+
+### General
 - All validation and business rules must be enforced in the UI.
 - The app must not use any backend or persistent storage.
 - The codebase must be organized for testability and maintainability.
