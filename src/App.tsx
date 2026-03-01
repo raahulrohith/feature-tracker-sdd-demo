@@ -50,12 +50,8 @@ function App() {
                 : undefined
             }
             submitLabel={editingFeature ? 'Save Changes' : 'Add Feature'}
+            onCancel={editingFeature ? () => setEditingFeature(null) : undefined}
           />
-          {editingFeature && (
-            <button onClick={() => setEditingFeature(null)} style={{ marginBottom: 12 }}>
-              Cancel Edit
-            </button>
-          )}
         </section>
         <section className="app-section">
           <h2>Feature Requests</h2>

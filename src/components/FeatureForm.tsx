@@ -6,11 +6,12 @@ interface FeatureFormProps {
   readonly onSubmit: (data: Omit<FeatureRequest, 'id' | 'createdAt' | 'status'>) => void;
   readonly initial?: Omit<FeatureRequest, 'id' | 'createdAt' | 'status'>;
   readonly submitLabel?: string;
+  readonly onCancel?: () => void;
 }
 
 const priorities: FeatureRequestPriority[] = ['Low', 'Medium', 'High'];
 
-export function FeatureForm({ onSubmit, initial, submitLabel = 'Add Feature' }: Readonly<FeatureFormProps>) {
+export function FeatureForm({ onSubmit, initial, submitLabel = 'Add Feature', onCancel }: Readonly<FeatureFormProps>) {
   const [title, setTitle] = useState(initial?.title || '');
   const [description, setDescription] = useState(initial?.description || '');
   const [priority, setPriority] = useState<FeatureRequestPriority>(initial?.priority || 'Medium');
@@ -41,50 +42,56 @@ export function FeatureForm({ onSubmit, initial, submitLabel = 'Add Feature' }: 
     }
     setError(null);
     onSubmit({ title, description, priority });
-    setTitle('');
-    setDescription('');
-    setPriority('Medium');
+    if (!initial) {
+      setTitle('');
+      setDescription('');
+      setPriority('Medium');
+    }
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginBottom: 16 }}>
-      <div>
-        <label htmlFor="feat-title">Title:</label>
+    <form onSubmit={handleSubmit} className="feature-form">
+      <div className="form-group">
+        <label htmlFor="feat-title">Title</label>
         <input
           id="feat-title"
           value={title}
           onChange={e => setTitle(e.target.value)}
           maxLength={100}
           required
-          style={{ marginLeft: 8 }}
+          placeholder="Feature title…"
         />
       </div>
-      <div>
-        <label htmlFor="feat-desc">Description:</label>
+      <div className="form-group">
+        <label htmlFor="feat-desc">Description</label>
         <textarea
           id="feat-desc"
           value={description}
           onChange={e => setDescription(e.target.value)}
           minLength={10}
           required
-          style={{ marginLeft: 8, verticalAlign: 'top' }}
+          placeholder="Describe the feature (min 10 chars)…"
         />
       </div>
-      <div>
-        <label htmlFor="feat-priority">Priority:</label>
+      <div className="form-group">
+        <label htmlFor="feat-priority">Priority</label>
         <select
           id="feat-priority"
           value={priority}
           onChange={e => setPriority(e.target.value as FeatureRequestPriority)}
-          style={{ marginLeft: 8 }}
         >
           {priorities.map(p => (
             <option key={p} value={p}>{p}</option>
           ))}
         </select>
       </div>
-      {error && <div style={{ color: 'red', marginTop: 8 }}>{error}</div>}
-      <button type="submit" style={{ marginTop: 8 }}>{submitLabel}</button>
+      {error && <div className="form-error">{error}</div>}
+      <div className="form-actions">
+        <button type="submit" className="btn btn-primary">{submitLabel}</button>
+        {onCancel && (
+          <button type="button" className="btn btn-secondary" onClick={onCancel}>Cancel</button>
+        )}
+      </div>
     </form>
   );
 }

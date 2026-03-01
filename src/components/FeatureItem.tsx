@@ -7,37 +7,50 @@ interface FeatureItemProps {
   readonly onChangeStatus: (id: string, status: FeatureRequestStatus) => void;
 }
 
-const statusTransitions: Record<FeatureRequestStatus, FeatureRequestStatus[]> = {
-  Proposed: ['Proposed', 'In Progress'],
-  'In Progress': ['In Progress', 'Released'],
-  Released: ['Released'],
+const priorityBadgeClass: Record<string, string> = {
+  Low: 'badge badge-priority-low',
+  Medium: 'badge badge-priority-medium',
+  High: 'badge badge-priority-high',
+};
+
+const statusBadgeClass: Record<string, string> = {
+  Proposed: 'badge badge-status-proposed',
+  'In Progress': 'badge badge-status-in-progress',
+  Released: 'badge badge-status-released',
 };
 
 export function FeatureItem({ feature, onEdit, onDelete, onChangeStatus }: Readonly<FeatureItemProps>) {
   return (
-    <div style={{ border: '1px solid #ccc', borderRadius: 4, padding: 12, marginBottom: 8, background: '#fafbfc' }}>
-      <div style={{ fontWeight: 'bold', fontSize: 16 }}>{feature.title}</div>
-      <div style={{ margin: '4px 0' }}>{feature.description}</div>
-      <div style={{ fontSize: 13, color: '#555' }}>
-        Priority: <b>{feature.priority}</b> | Status: <b>{feature.status}</b> | Created: {new Date(feature.createdAt).toLocaleString()}
+    <div className="feature-card">
+      <div className="feature-card-header">
+        <h3 className="feature-card-title">{feature.title}</h3>
+        <div className="feature-card-meta">
+          <span className={priorityBadgeClass[feature.priority]}>{feature.priority}</span>
+          <span className={statusBadgeClass[feature.status]}>{feature.status}</span>
+        </div>
       </div>
-      <div style={{ marginTop: 8 }}>
-        <button onClick={() => onEdit(feature)} style={{ marginRight: 8 }}>Edit</button>
-        <button onClick={() => onDelete(feature.id)} style={{ marginRight: 8 }}>Delete</button>
-        <label htmlFor={`status-select-${feature.id}`}>Status:</label>
-        <select
-          id={`status-select-${feature.id}`}
-          value={feature.status}
-          onChange={e => onChangeStatus(feature.id, e.target.value as FeatureRequestStatus)}
-          disabled={feature.status === 'Released'}
-          style={{ marginLeft: 6 }}
-        >
-          {statusTransitions[feature.status].map(s => (
-            <option key={s} value={s}>{s}</option>
-          ))}
-        </select>
-        {feature.status === 'Released' && (
-          <span style={{ color: 'gray', marginLeft: 8 }}>(No further changes allowed)</span>
+      <p className="feature-card-description">{feature.description}</p>
+      <div className="feature-card-meta">
+        <span>Created {new Date(feature.createdAt).toLocaleDateString()}</span>
+      </div>
+      <div className="feature-card-actions">
+        <button className="btn btn-secondary btn-sm" onClick={() => onEdit(feature)}>Edit</button>
+        <button className="btn btn-danger btn-sm" onClick={() => onDelete(feature.id)}>Delete</button>
+        {feature.status === 'Proposed' && (
+          <button
+            className="btn btn-warning btn-sm"
+            onClick={() => onChangeStatus(feature.id, 'In Progress')}
+          >
+            Start Progress
+          </button>
+        )}
+        {feature.status === 'In Progress' && (
+          <button
+            className="btn btn-success btn-sm"
+            onClick={() => onChangeStatus(feature.id, 'Released')}
+          >
+            Release
+          </button>
         )}
       </div>
     </div>

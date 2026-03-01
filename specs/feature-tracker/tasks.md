@@ -42,3 +42,13 @@
 - [x] Add a few sample feature requests in initial state for demo.
 - [x] Test all user flows: create, edit, delete, change status.
 - [x] Verify validation, sorting, and business rules in the UI.
+
+## 9. UX Refinement — Align to Updated Spec ✅
+- [x] Replace status dropdown in FeatureItem with contextual action buttons ("Start Progress" / "Release").
+- [x] Add badge-style indicators for priority (Low=green, Medium=amber, High=red) and status (Proposed=blue, In Progress=amber, Released=green).
+- [x] Restyle FeatureItem as dark-themed feature cards with proper contrast and spacing.
+- [x] Restyle FeatureForm with vertical layout, labeled groups, dark-themed inputs, and cancel button for edit mode.
+- [x] Move cancel-edit logic from App.tsx inline button to FeatureForm's `onCancel` prop.
+- [x] Add responsive CSS media queries for mobile/tablet stacking.
+- [x] Clean up index.css — remove Vite template light-mode overrides, enforce dark-only color scheme.
+- [x] Verify TypeScript build passes (`npx tsc -b`) with zero errors.

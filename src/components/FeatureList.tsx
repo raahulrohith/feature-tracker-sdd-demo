@@ -11,7 +11,7 @@ interface FeatureListProps {
 export function FeatureList({ features, onEdit, onDelete, onChangeStatus }: Readonly<FeatureListProps>) {
   return (
     <div>
-      {features.length === 0 && <div>No feature requests yet.</div>}
+      {features.length === 0 && <div className="empty-state">No feature requests yet. Add one above!</div>}
       {features.map(feature => (
         <FeatureItem
           key={feature.id}
